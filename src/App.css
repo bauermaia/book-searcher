@@ -1,0 +1,156 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amarante&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+
+  /* fonts */
+  --title-font: "Roboto Mono", serif;
+  --normal-font: "Montserrat", serif;
+  --big-font: 2.5rem;
+  --medium-font: 2rem;
+  --small-font: 1rem;
+
+
+  /* color */
+  --background-color: #2C3E50;
+  --background2-color: #1e272e;
+  --accent-color: #d4a017;
+  --accent2color: #2a6478;
+  --second-color: #f5f5f5;
+  --second2-color: #d9cba7;
+
+
+  /* shadows */
+  --title-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  --text-shadow:  0px 2px 4px rgba(255, 255, 255, 0.2);
+  --big-box-shadow: 04px 6px 12px rgba(0, 0, 0, 0.5);
+  --card-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --button-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+body{
+  background-color: var(--background-color);
+  
+}
+
+header{
+  background-color: var(--background2-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative; /*permite posicionar el logo*/
+  border-radius: 12px;
+}
+
+.logo{
+  position: absolute;
+  left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+  max-width: 12%; /* Ajusta el tamaño del logo según sea necesario */
+}
+
+h1{
+  font-family: var(--title-font);
+  font-size: var(--big-font);
+  text-shadow: var(--text-shadow);
+  border: 2px solid var(--accent2color); /* Borde alrededor */
+  padding: 10px 20px;
+  border-radius: 8px; /* Bordes suavizados */
+  display: inline-block;
+  color: var(--second-color);
+}
+
+h2 {
+  font-family: var(--title-font);
+  font-size: var(--medium-font);
+  text-shadow: var(--title-shadow);
+  padding: 10px 20px;
+  display: inline-block;
+  border-bottom: 2px solid var(--accent-color); /* Línea sutil */
+}
+
+h3 {
+  font-family: var(--normal-font);
+  color: var(--second2-color);
+  text-shadow: var(--title-shadow); 
+}
+
+p {
+  font-family: var(--normal-font);
+}
+
+.book-cover {
+  width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  max-width: 200px; /* Tamaño máximo opcional */
+  height: auto; /* Mantiene la proporción original */
+  object-fit: contain; /* Evita que la imagen se deforme */
+  border-radius: 8px; /* Opcional: bordes redondeados */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Opcional: sombra */
+}
+
+
+.book-card{
+  background-color: var(--background2-color);
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--big-box-shadow);
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  background-color: var(--accent2color);
+  margin: 1rem;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  border-radius: 15px;
+  margin: 1rem auto; /* Centra horizontalmente */
+}
+
+form {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 2px;
+  justify-content: space-between;
+}
+
+input{
+  height: 2rem;
+  border-radius: 8px;
+  width: 70%; /* Aumenta el ancho */
+  padding: 5px 10px;
+  font-size: 1.2rem; /* Tamaño del texto más grande */
+}
+
+button{
+  background-color: var(--second2-color);
+  border: none;
+  font-family: var(--title-font);
+  font-size: var(--small-font);
+  border-radius: 15px;
+  padding: 5px;
+  width: 20%;
+  font-weight: bold;
+  font-family: var(--normal-font);
+  text-shadow: var(--text-shadow);
+}
+
+button:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}
