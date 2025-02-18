@@ -19,7 +19,7 @@ export function useBooks () {
   const [loading, setLoading] = useState(false)
 
   const getBooks = async({search}) => {
-    if(search.trim() ==='') return;
+   
     setLoading(true)
     setError(null)
 
