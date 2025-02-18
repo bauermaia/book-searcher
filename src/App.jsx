@@ -4,6 +4,7 @@ import './App.css'
 import { BookCard } from './components/BookCard';
 import { useBooks } from './hooks/useBooks';
 import { Toaster } from 'react-hot-toast';
+import { useMostSearched } from './hooks/useMostSearched';
 
 function App() {
   
@@ -12,12 +13,14 @@ const [search, setSearch] = useState('')
  const [searchDone, setSearchDone] = useState(false)
 const [favorites, setFavorites] = useState([])
 const [loadFavorites,setLoadFavorites] = useState(false)
-
+const {mostSearched} = useMostSearched()
+const [isFirstLoad, setIsFirstLoad] = useState(true)
 
 const handleChange =(event) => {
   setSearch(event.target.value)
   setSearchDone(false)
   setLoadFavorites(false)
+  setIsFirstLoad(false)
 }
 
 const handleSubmit=(event)=> {
@@ -25,6 +28,7 @@ const handleSubmit=(event)=> {
   getBooks({search})
   setSearchDone(true)
   setFavorites(false)
+  setIsFirstLoad(false)
 }
 
 const handleFavoritesLoad = () => {
@@ -32,9 +36,10 @@ const storedFavorites = JSON.parse(localStorage.getItem('favorites'))|| [];
 setSearchDone(false)
  setFavorites(storedFavorites)
   setLoadFavorites(true)
+  setIsFirstLoad(false)
 }
 
-console.log(favorites)
+console.log(mostSearched)
 
   return(
     <>
@@ -66,6 +71,12 @@ console.log(favorites)
       {
         loadFavorites && (
           <BookCard books={favorites} loading={false} error={null}/>
+        )
+      }
+
+      {
+        isFirstLoad && mostSearched.length > 0 && (
+          <BookCard books={mostSearched} loading={false} error={null} />
         )
       }
     </section>
