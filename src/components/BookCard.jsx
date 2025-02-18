@@ -1,6 +1,10 @@
-
+import { useState } from "react"
+import { Modal } from "./Modal"
 
 export function BookCard ({books, loading, error}) {
+
+  const [selectedBook, setSelectedBook] = useState('')
+  const [openModal, setOpenModal] = useState(false)
 
 
     const booksWithCovers= books.filter(book =>book.coverId !== undefined && book.coverId !== null )
@@ -13,12 +17,18 @@ export function BookCard ({books, loading, error}) {
         return <p>{error} 😑 </p>
     }
 
+    const handleClick =(book) => {
+      setSelectedBook(book)
+      setOpenModal(true)
+    }
+
+
     return (
         <>
         {
             booksWithCovers.length > 0 ? (
               booksWithCovers.map((book, index) => (
-                <div className="book-card" key={index}>
+                <div className="book-card" key={index} onClick={()=> handleClick(book)}>
                   <h3>{book.name}</h3>
                   
                   {book.coverId && (
@@ -30,6 +40,10 @@ export function BookCard ({books, loading, error}) {
             ) : (
               <p>No books found ⛔ </p>
             )
+          }
+
+          {
+            openModal && <Modal selectedBook={selectedBook} onClose={()=> setOpenModal(false)}/>
           }
         </>
     )

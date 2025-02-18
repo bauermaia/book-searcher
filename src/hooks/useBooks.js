@@ -1,7 +1,19 @@
 import { useState } from "react";
+
+
+const BOOK_INFO_ENDPOINT= 'https://openlibrary.org/search.json?q=';
+const SUBJECT_ENDPOINT= 'https://openlibrary.org/subjects'
+
+
+const SUBJECTS = new Set (["fiction", "history", "science", "love", "arts", "animals", 
+      "finance", "children", "wellness", "biography", "textbooks", 
+      "fantasy", "mystery", "horror", "cience fiction", "cooking", "medicine",
+    "mistery", "detectives", "religion", "music"
+])
+
 export function useBooks () {
 
-  const BOOK_INFO_ENDPOINT= 'https://openlibrary.org/search.json?q=';
+
   const [books, setBooks] = useState([])
   const [error, setError] =useState()
   const [loading, setLoading] = useState(false)
@@ -12,42 +24,46 @@ export function useBooks () {
     setError(null)
 
     try {
-      const response = await fetch(`${BOOK_INFO_ENDPOINT}${search}`)
-       //renderizado progresivo para que no demore tanto en cargar
-      const reader= response.body.getReader()
-      const decoder = new TextDecoder();
-      let partialData=''
 
-      while(true) {
-        const {value, done} = await reader.read()
-        if(done) break;
-        partialData += decoder.decode(value, {stream: true})
-      }
-     
+      const isSubject =SUBJECTS.has(search.toLowerCase())
+      const url = isSubject 
+      ? `${SUBJECT_ENDPOINT}/${search}.json`
+      : `${BOOK_INFO_ENDPOINT}${search}`;
 
-      //intenta parsear en cada fragmento recibido
-      try {
-        const json = JSON.parse(partialData);
-        const booksData = json.docs?.map(book => ({
-          autorId: book.author_key?.[0] || 'Unknown',
-          autorName: book.author_name?.[0] || 'Unknown',
-          coverId: book.cover_i,
-          name: book.title
-        }))
-  
-       setBooks(booksData)
-      } catch(e) {
-        //si la respeusta no esta completa ignora el error de JSON. parse
-      }
+ 
+    const response = await fetch(url);
+    const data = await response.json();
 
-      
-      
-    } catch(e) {
-    setError("Error geting books")
-    } finally {
-      setLoading(false)
+    let booksData = [];
+
+    if (!isSubject && data.docs) {
+      // Para búsquedas por título o autor
+      booksData = data.docs.map(book => ({
+        autorId: book.author_key?.[0] || 'Unknown',
+        autorName: book.author_name?.[0] || 'Unknown',
+        coverId: book.cover_i,
+        name: book.title,
+        key: book.key
+      }));
+    } else if (isSubject && data.works) {
+      // Para búsquedas por subject (género)
+      booksData = data.works.map(book => ({
+        autorId: book.authors?.[0]?.key || 'Unknown',
+        autorName: book.authors?.[0]?.name || 'Unknown',
+        coverId: book.cover_id,
+        name: book.title,
+        key: book.key
+      }));
     }
+
+    setBooks(booksData);
+  } catch (e) {
+    setError("Error getting books");
+  } finally {
+    setLoading(false);
   }
+};
+
 
   return {books, error, loading, getBooks}
   

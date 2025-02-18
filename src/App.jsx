@@ -33,7 +33,7 @@ console.log(books)
 
     <main>
       <form action="" onSubmit={handleSubmit}>
-      <input type="text" placeholder='Enter the book name' value={search} onChange={handleChange}/>
+      <input type="text" placeholder='Enter a book name, author, or genre' value={search} onChange={handleChange}/>
       <button>Search</button>
       </form>
     </main>
@@ -43,7 +43,7 @@ console.log(books)
         searchDone ? (
           <BookCard books={books} loading={loading} error={error}/>
         ) :(
-          <p>Please, enter a book name to start the search</p>
+          <p>Please, enter a title, author or genre to search</p>
         )
       }
     </section>
