@@ -372,8 +372,12 @@ button:hover {
       grid-template-columns: repeat(1, 1fr); /* Mantiene la grilla */
     }
 
-    h1, a, i, .favorites-icon{
-      font-size: 1rem;
+    h1{
+      font-size: 0.6rem ;
+    }
+     a, i, .favorites-icon{
+      font-size: 1.5rem;
+     
     }
 
     input {
@@ -384,12 +388,15 @@ button:hover {
 
     .i-theme{
       position: absolute;
-      bottom: 0px;
-      left: 50px;
+      bottom: -8px;
+      left: 30px;
     }
     
+    .favorites-icon{
+      right: 10px;
+    }
     .section-title{
-      margin-top: -10px;
+      margin-top: -30px;
       margin-bottom: -10px;
     }
 
