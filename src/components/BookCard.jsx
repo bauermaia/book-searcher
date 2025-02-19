@@ -10,12 +10,13 @@ export function BookCard ({books, loading, error}) {
     const booksWithCovers= books.filter(book =>book.coverId !== undefined && book.coverId !== null )
 
     if(loading) {
-        return <p>Loading books... 🕗 </p>
+        return <p className="message">Loading books... 🕗 </p>
     }
 
     if(error) {
         return <p>{error} 😑 </p>
     }
+    
 
     const handleClick =(book) => {
       setSelectedBook(book)
@@ -38,7 +39,8 @@ export function BookCard ({books, loading, error}) {
                 </div>
               ))
             ) : (
-              <p>No books found ⛔ </p>
+                <p className="message">No books found ⛔ </p>
+            
             )
           }
 

@@ -10,15 +10,7 @@
   --medium-font: 2rem;
   --small-font: 1rem;
 
-
-  /* color */
-  --background-color: #2C3E50;
-  --background2-color: #1e272e;
-  --accent-color: #d4a017;
-  --accent2color: #2a6478;
-  --second-color: #f5f5f5;
-  --second2-color: #d9cba7;
-
+ 
 
   /* shadows */
   --title-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
@@ -26,6 +18,29 @@
   --big-box-shadow: 04px 6px 12px rgba(0, 0, 0, 0.5);
   --card-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   --button-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.1);
+
+
+}
+
+/* modo oscuro */
+[data-theme="dark"] {
+   /* color */
+   --background-color: #2C3E50;
+   --background2-color: #1e272e;
+   --accent-color: #d4a017;
+   --accent2color: #2a6478;
+   --second-color: #f5f5f5;
+   --second2-color: #d9cba7;
+}
+
+/* modo claro */
+[data-theme="light"] {
+  --background-color:  #f5f5f5;
+  --background2-color: #d9cba7;
+  --accent-color: #f0c046;
+  --accent2color: #3c89a3;
+  --second-color: #2e3b49;
+  --second2-color: #51687a;
 }
 
 body{
@@ -47,6 +62,30 @@ header{
   position: absolute;
   left: 20px; /* Ajusta la distancia desde el borde izquierdo */
   max-width: 12%; /* Ajusta el tamaño del logo según sea necesario */
+  transition: transform ease-out 0.4s;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.mode{
+  width: auto;
+  margin: 5px;
+  font-size: var(--big-font);
+  position: absolute;
+  right: 80px; /* Ajusta la distancia desde el borde izquierdo */
+  max-width: 12%; /* Ajusta el tamaño del logo según sea necesario */
+  background-color: transparent;
+  border-radius: 50%;
+  color: var(--accent-color);
+  text-shadow: none;
+  transition: transform ease 0.5s;
+}
+
+.mode:hover{
+  transform: scale(1.1);
+  background-color: transparent;
 }
 
 h1{
@@ -122,6 +161,7 @@ a:hover{
 color: var(--background2-color);
 }
 
+
 .actions{
   display: flex;
   flex-direction: row;
@@ -160,18 +200,31 @@ color: var(--background2-color);
               
 }
 
+.section-title{
+  width: 100%;
+  text-align: center; /* Centra el texto */
+  background-color: var(--accent2color); /* Color de fondo opcional */
+  padding: 10px 0; /* Espaciado opcional */
+  grid-column: 1 / -1; /* Asegura que ocupe todo el ancho dentro del grid */
+  border-radius: 15px;
+  box-shadow: var(--big-box-shadow);
+  margin-top: -10px;
+}
+
 section {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* Mantiene la grilla */
   margin-top: 50px;
   gap: 2rem;
+  width: 100%; /* Ajuste opcional para evitar desbordamientos */
 }
+
 
 main{
   display: flex;
   flex-direction: column;
   max-width: 90%;
-  background-color: var(--accent2color);
+  background-color: var(--accent-color);
   margin: 1rem;
   align-items: center;
   justify-content: space-around;
@@ -211,7 +264,7 @@ button{
 }
 
 button:hover {
-  background-color: var(--accent-color);
+  background-color: var(--accent2color);
   cursor: pointer;
 }
 
@@ -235,12 +288,13 @@ button:hover {
   border-radius: 15px;
   border: 5px solid var(--second2-color);
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Asegura que el contenido se acomode correctamente */
   min-width: 40%;
-  max-width: 70%;
+  max-width: 90%;
   max-height: 85vh; /* Limita la altura máxima del modal */
   overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es demasiado largo */
   padding: 20px; /* Añade un poco de padding para que el contenido no esté pegado a los bordes */
+  position: relative;
 }
 
 
@@ -280,3 +334,17 @@ button:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background:var(--accent-color);}
+
+
+  .message{
+    width: 100%;
+  text-align: center; /* Centra el texto */
+  background-color: var(--accent-color); /* Color de fondo opcional */
+  padding: 10px 0; /* Espaciado opcional */
+  grid-column: 1 / -1; /* Asegura que ocupe todo el ancho dentro del grid */
+  border-radius: 15px;
+  box-shadow: var(--big-box-shadow);
+  margin-top: -10px;
+  }
+
+ 
