@@ -74,7 +74,7 @@ const handleLogo = ()=> {
     <img className='logo' src="/images/logo.png" alt="Books space" onClick={handleLogo}/>
     <h1>Online book searcher</h1>
     <button className='mode' onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-        {theme === "dark" ? <i className="ri-sun-line"></i> : <i className="ri-contrast-2-fill"></i>}
+        {theme === "dark" ? <i className="ri-sun-line i-theme"></i> : <i className="ri-contrast-2-fill i-theme"></i>}
       </button>
     <i className="ri-star-fill favorites-icon" onClick={handleFavoritesLoad}></i>
     </header>

@@ -6,8 +6,8 @@
   /* fonts */
   --title-font: "Roboto Mono", serif;
   --normal-font: "Montserrat", serif;
-  --big-font: 2.5rem;
-  --medium-font: 2rem;
+  --big-font: 2.2rem;
+  --medium-font: 1.8rem;
   --small-font: 1rem;
 
  
@@ -22,26 +22,24 @@
 
 }
 
-/* modo oscuro */
 [data-theme="dark"] {
-   /* color */
-   --background-color: #2C3E50;
-   --background2-color: #1e272e;
-   --accent-color: #d4a017;
-   --accent2color: #2a6478;
-   --second-color: #f5f5f5;
-   --second2-color: #d9cba7;
+  --background-color: #1a1a2e;
+  --background2-color: #16213e;
+  --accent-color: #e8d265;
+  --accent2color: #2a6478;
+  --second-color: #eaeaea;
+  --second2-color: #b3b3b3;
 }
 
-/* modo claro */
 [data-theme="light"] {
-  --background-color:  #f5f5f5;
-  --background2-color: #d9cba7;
-  --accent-color: #f0c046;
+  --background-color:  #f8f9fa;
+  --background2-color: #e0e0e0;
+  --accent-color: #ffcc00;
   --accent2color: #3c89a3;
-  --second-color: #2e3b49;
-  --second2-color: #51687a;
+  --second-color: #333;
+  --second2-color: #555;
 }
+
 
 body{
   background-color: var(--background-color);
@@ -191,13 +189,12 @@ color: var(--background2-color);
   align-items: center;
   text-align: center;
   box-shadow: var(--big-box-shadow);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .book-card:hover {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), /* Luz blanca principal */
-              0 0 20px rgba(255, 215, 0, 0.6)  /* Luz dorada secundaria */
-              
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .section-title{
@@ -250,23 +247,22 @@ input{
   font-size: 1.2rem; /* Tamaño del texto más grande */
 }
 
-button{
-  background-color: var(--second2-color);
+button {
+  background-color: var(--second-color);
   border: none;
-  font-family: var(--title-font);
-  font-size: var(--small-font);
-  border-radius: 15px;
-  padding: 5px;
-  width: 20%;
-  font-weight: bold;
   font-family: var(--normal-font);
-  text-shadow: var(--text-shadow);
+  font-size: 1rem;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 button:hover {
-  background-color: var(--accent2color);
-  cursor: pointer;
+  background-color: darken(var(--accent-color), 10%);
+  transform: scale(1.05);
 }
+
 
 .modal-container {
   position: fixed;
@@ -283,10 +279,10 @@ button:hover {
 .modal {
   display: flex;
   flex-direction: column;
-  background-color: var(--accent2color);
+  background-color: var(--background2-color);
   gap: 0.5rem;
-  border-radius: 15px;
-  border: 5px solid var(--second2-color);
+  border-radius: 10px;
+  border: 2px solid var(--accent-color);
   align-items: center;
   justify-content: flex-start; /* Asegura que el contenido se acomode correctamente */
   min-width: 40%;
@@ -295,6 +291,8 @@ button:hover {
   overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es demasiado largo */
   padding: 20px; /* Añade un poco de padding para que el contenido no esté pegado a los bordes */
   position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+  text-align: justify;
 }
 
 
@@ -347,4 +345,56 @@ button:hover {
   margin-top: -10px;
   }
 
+  /* medium devices */
+
+  @media (max-width: 900px){
+    h1 {
+      font-size: 1.5rem;
+    }
+     h2 {
+      font-size: 1rem;
+     }
+
+     section {
+      grid-template-columns: repeat(3, 1fr); /* Mantiene la grilla */
+    }
+  }
+ 
+  /* small devices */
+  @media (max-width: 700px){
+    section {
+      grid-template-columns: repeat(2, 1fr); /* Mantiene la grilla */
+    }
+  }
+
+  @media (max-width: 500px){
+    section {
+      grid-template-columns: repeat(1, 1fr); /* Mantiene la grilla */
+    }
+
+    h1, a, i, .favorites-icon{
+      font-size: .8rem;
+    }
+
+    input {
+      padding: 1px;
+      font-size: 1rem;
+    }
+    
+
+    .i-theme{
+      position: absolute;
+      bottom: 0px;
+      left: 50px;
+    }
+    
+    .section-title{
+      margin-top: -px;
+      margin-bottom: -20px;
+    }
+
+    .ri-arrow-left-box-line{
+      font-size: 2rem;
+    }
+  }
  
