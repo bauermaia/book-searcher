@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function useMostSearched() {
     const [mostSearched, setMostSearched] = useState([]);
@@ -25,6 +25,7 @@ export function useMostSearched() {
             .finally(()=> setMostLoading(false));
     }, []);
 
-    return { mostSearched, mostLoading};
+    const memoizedMostSearched = useMemo(()=> mostSearched, [mostSearched])
+    return { mostSearched: memoizedMostSearched, mostLoading};
 }
 
